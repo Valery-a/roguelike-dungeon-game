@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Valery-s-WebDungeon.props" />
+</Project>

@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{600575A1-9BD0-406B-8084-AB112033DEF5}|https">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.razor">
+    <Files>
+      <File FileName="Games/Player.cs" Line="71" Column="28" />
+      <File FileName="Games/Program.cs" Line="311" Column="10" />
+      <File FileName="Pages/Index.razor" Line="10" Column="8" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Valery-s-WebDungeon" expanded="True">
+            <Node name="Valery-s-WebDungeon" expanded="True">
+              <Node name="Games" expanded="True" />
+              <Node name="Pages" expanded="True">
+                <Node name="Index.razor" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Shared" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Valery-s-WebDungeon PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
