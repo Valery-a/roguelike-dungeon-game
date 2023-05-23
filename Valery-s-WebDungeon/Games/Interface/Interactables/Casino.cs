@@ -9,23 +9,23 @@ namespace Valery_s_Dungeon;
 public class Casino
 {
     static Random rand = new Random();
-    public static void LoadCasino()
+    public static async Task LoadCasino()
     {
-        CasinoRun();
+        await CasinoRun();
 
     }
 
-    public static void CasinoRun()
+    public static async Task CasinoRun()
     {
         while (true)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(@"
+            await BlazorConsole.Clear();
+            BlazorConsole.ForegroundColor = ConsoleColor.Red;
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            BlazorConsole.ResetColor();
+            BlazorConsole.ForegroundColor = ConsoleColor.Green;
+            await BlazorConsole.WriteLine(@"
                                                     
     .------..------..------..------..------..------.
     |C.--. ||A.--. ||S.--. ||I.--. ||N.--. ||O.--. |
@@ -35,37 +35,37 @@ public class Casino
     `------'`------'`------'`------'`------'`------'                                                   
                                                     
                 ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("             (1)Jester's Gambit of 21");
-            Console.WriteLine("             (2)Race");
-            Console.WriteLine("             (3)Hang");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("             PRESS E TO EXIT");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.ResetColor();
+            BlazorConsole.ResetColor();
+            BlazorConsole.ForegroundColor = ConsoleColor.Red;
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            BlazorConsole.ResetColor();
+            BlazorConsole.ForegroundColor = ConsoleColor.DarkGreen;
+            await BlazorConsole.WriteLine("             (1)Jester's Gambit of 21");
+            await BlazorConsole.WriteLine("             (2)Race");
+            await BlazorConsole.WriteLine("             (3)Hang");
+            BlazorConsole.ResetColor();
+            BlazorConsole.ForegroundColor = ConsoleColor.Red;
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            BlazorConsole.ResetColor();
+            BlazorConsole.ForegroundColor = ConsoleColor.Blue;
+            await BlazorConsole.WriteLine("             PRESS E TO EXIT");
+            BlazorConsole.ForegroundColor = ConsoleColor.Red;
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            BlazorConsole.ResetColor();
 
 
-            string input = Console.ReadLine()!.ToLower();
+            string input = (await BlazorConsole.ReadLine()!).ToLower();
 
             if (input == "1" || input == "blackjack")
             {
                 if (Dungeon.currentPlayer.coins > 25)
-                    BlackJack.Play();
+                    await BlackJack.Play();
                 else
-                    Console.WriteLine("You need atleast 25 coins to play!");
-                Console.ReadKey();
+                    await BlazorConsole.WriteLine("You need atleast 25 coins to play!");
+                await BlazorConsole.ReadKey();
             }
             else if (input == "2" || input == "race")
             {

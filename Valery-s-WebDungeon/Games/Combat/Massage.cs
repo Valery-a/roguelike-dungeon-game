@@ -10,9 +10,12 @@ namespace Valery_s_Dungeon.Combat
     {
         public List<MessagePart> parts = new List<MessagePart>();
 
-        public void Render()
+        public async Task Render()
         {
-            parts.ForEach(p => p.Render());
+            foreach (var part in parts)
+            {
+				await part.Render();
+			}
         }
 
         public class MessagePart
@@ -27,10 +30,10 @@ namespace Valery_s_Dungeon.Combat
                 this.color = color;
             }
 
-            public void Render()
+            public async Task Render()
             {
-                Console.ForegroundColor = color;
-                Console.Write(text);
+                BlazorConsole.ForegroundColor = color;
+                await BlazorConsole.Write(text);
             }
         }
     }

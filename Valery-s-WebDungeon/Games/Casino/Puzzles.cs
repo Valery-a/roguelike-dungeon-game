@@ -14,16 +14,16 @@ namespace Valery_s_Dungeon
         static bool playerTurn = true; // boolean variable to keep track of whose turn it is (true = player, false = AI)
         static Random rand = new Random();
         //===================================================================================================//
-        public static void Puzzle1()
+        public static async Task Puzzle1()
         {
-            Console.Clear();
-            Console.WriteLine("After a lot of fearsome battles you stumble across a giant wall with strange symbols written on it.");
-            Console.WriteLine("You see that the wall is full of colorful plates (represented as numbers)");
-            Console.ReadKey();
-            Console.Clear();
-            Console.WriteLine("You realise that this is no orinary room!");
-            Console.WriteLine("To complete this puzzle you need to look for the most repeated number in each column and row");
-            Console.WriteLine("Type a number between 1 and 4 that represents the most repeated number. (LEFT to RIGHT)");
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("After a lot of fearsome battles you stumble across a giant wall with strange symbols written on it.");
+            await BlazorConsole.WriteLine("You see that the wall is full of colorful plates (represented as numbers)");
+            await BlazorConsole.ReadKey();
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("You realise that this is no orinary room!");
+            await BlazorConsole.WriteLine("To complete this puzzle you need to look for the most repeated number in each column and row");
+            await BlazorConsole.WriteLine("Type a number between 1 and 4 that represents the most repeated number. (LEFT to RIGHT)");
 
             List<char> chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8' }.ToList();
             List<int> positions = new List<int>();
@@ -37,22 +37,22 @@ namespace Valery_s_Dungeon
                 {
                     if (x == pos)
                     {
-                        Console.Write(c);
+                        await BlazorConsole.Write(c);
                     }
                     else
                     {
-                        Console.Write(chars[rand.Next(0, 7)]);
+                        await BlazorConsole.Write(chars[rand.Next(0, 7)]);
                     }
                 }
-                Console.Write("\n");
+                await BlazorConsole.Write("\n");
             }
-            Console.WriteLine();
+            await BlazorConsole.WriteLine();
             for (int i = 0; i < 4; i++)
             {
                 while (true)
                 {
                     //chekwa dali e cqlo chislo
-                    if (int.TryParse(Console.ReadLine(), out int input) && input < 5 && input > 0)
+                    if (int.TryParse(await BlazorConsole.ReadLine(), out int input) && input < 5 && input > 0)
                     {
                         if (positions[i] == input - 1)
                         {
@@ -60,23 +60,23 @@ namespace Valery_s_Dungeon
                         }
                         else
                         {
-                            Console.WriteLine("You hear a voice in your head that says.");
-                            Console.WriteLine("Denkata shte zawursi!?");
-                            Console.WriteLine("That makes you feel anxious and you want to smash something so bad! " +
+                            await BlazorConsole.WriteLine("You hear a voice in your head that says.");
+                            await BlazorConsole.WriteLine("Denkata shte zawursi!?");
+                            await BlazorConsole.WriteLine("That makes you feel anxious and you want to smash something so bad! " +
                                 "That you end up hurting yourself.");
-                            Console.WriteLine("You lost 1 health.");
+                            await BlazorConsole.WriteLine("You lost 1 health.");
                             Dungeon.currentPlayer.health -= 2;
                             if (Dungeon.currentPlayer.health <= 0)
                             {
-                                Console.WriteLine("You start hitting yourself in the head, hoping that Denkata da ne zawurshi!");
-                                Console.WriteLine("But after countless hours you can't get rid of it and just decide to end it.");
-                                Console.WriteLine("You died!");
-                                Console.ReadKey();
+                                await BlazorConsole.WriteLine("You start hitting yourself in the head, hoping that Denkata da ne zawurshi!");
+                                await BlazorConsole.WriteLine("But after countless hours you can't get rid of it and just decide to end it.");
+                                await BlazorConsole.WriteLine("You died!");
+                                await BlazorConsole.ReadKey();
                                 System.Environment.Exit(0);
                             }
                             else
                             {
-                                Console.WriteLine("Luckuly you find an elixir that stops that noise.");
+                                await BlazorConsole.WriteLine("Luckuly you find an elixir that stops that noise.");
                             }
 
                             break;
@@ -85,61 +85,61 @@ namespace Valery_s_Dungeon
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Input! Try a number between 1 and 4");
+                        await BlazorConsole.WriteLine("Invalid Input! Try a number between 1 and 4");
 
                     }
                 }
             }
-            Console.WriteLine("You have succsessfuly finished the puzzle!");
-            Console.ReadKey();
+            await BlazorConsole.WriteLine("You have succsessfuly finished the puzzle!");
+            await BlazorConsole.ReadKey();
 
 
         }
         //===================================================================================================//
-        public static void Puzzle2()
+        public static async Task Puzzle2()
         {
-            Console.Clear();
-            Console.WriteLine("You stumble across a room with a table sitting in the middle.");
-            Console.WriteLine("As you get closer, you see that a creature appears before you.");
-            Console.WriteLine("He invites you to play a game of tictactoe with him. How can you not accept?");
-            Console.ReadKey();
-            Console.Clear();
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("You stumble across a room with a table sitting in the middle.");
+            await BlazorConsole.WriteLine("As you get closer, you see that a creature appears before you.");
+            await BlazorConsole.WriteLine("He invites you to play a game of tictactoe with him. How can you not accept?");
+            await BlazorConsole.ReadKey();
+            await BlazorConsole.Clear();
 
             InitializeBoard();
-            DisplayBoard();
+            await DisplayBoard();
 
             while (!CheckForWin() && !CheckForTie())
             {
                 if (playerTurn)
                 {
-                    PlayerMove();
+                    await PlayerMove();
                 }
                 else
                 {
-                    AIMove();
+                    await AIMove();
                 }
 
                 playerTurn = !playerTurn; // switch turns
-                DisplayBoard();
+                await DisplayBoard();
             }
 
             if (CheckForWin())
             {
                 if (playerTurn)
                 {
-                    Console.WriteLine("You lost!");
+                    await BlazorConsole.WriteLine("You lost!");
                 }
                 else
                 {
-                    Console.WriteLine("You won!");
+                    await BlazorConsole.WriteLine("You won!");
                 }
             }
             else
             {
-                Console.WriteLine("Tie game!");
+                await BlazorConsole.WriteLine("Tie game!");
             }
 
-            Console.ReadLine();
+            await BlazorConsole.ReadLine();
 
             static void InitializeBoard()
             {
@@ -152,15 +152,15 @@ namespace Valery_s_Dungeon
                 }
             }
 
-            static void DisplayBoard()
+            static async Task DisplayBoard()
             {
                 for (int row = 0; row < 3; row++)
                 {
                     for (int col = 0; col < 3; col++)
                     {
-                        Console.Write(board[row, col] + " ");
+                        await BlazorConsole.Write(board[row, col] + " ");
                     }
-                    Console.WriteLine();
+                    await BlazorConsole.WriteLine();
                 }
             }
 
@@ -213,12 +213,12 @@ namespace Valery_s_Dungeon
                 return true;
             }
 
-            static void PlayerMove()
+            static async Task PlayerMove()
             {
-                Console.Write("Enter row: ");
-                int row = int.Parse(Console.ReadLine()!) - 1; // subtract 1 to account for zero-indexing
-                Console.Write("Enter column: ");
-                int col = int.Parse(Console.ReadLine()!) - 1; // subtract 1 to account for zero-indexing
+                await BlazorConsole.Write("Enter row: ");
+                int row = int.Parse(await BlazorConsole.ReadLine()!) - 1; // subtract 1 to account for zero-indexing
+                await BlazorConsole.Write("Enter column: ");
+                int col = int.Parse(await BlazorConsole.ReadLine()!) - 1; // subtract 1 to account for zero-indexing
 
                 if (board[row, col] == '-')
                 {
@@ -226,12 +226,12 @@ namespace Valery_s_Dungeon
                 }
                 else
                 {
-                    Console.WriteLine("Invalid move. Try again.");
-                    PlayerMove(); // recursively call the method to prompt the player for another move
+                    await BlazorConsole.WriteLine("Invalid move. Try again.");
+                    await PlayerMove(); // recursively call the method to prompt the player for another move
                 }
             }
 
-            static void AIMove()
+            static async Task AIMove()
             {
                 Random random = new Random();
                 int row, col;
@@ -243,7 +243,7 @@ namespace Valery_s_Dungeon
                 } while (board[row, col] != '-');
 
                 board[row, col] = 'O';
-                Console.WriteLine("The creature placed an O at row {0}, column {1}", row, col);
+                await BlazorConsole.WriteLine(string.Format("The creature placed an O at row {0}, column {1}", row, col));
             }
         }
         //===================================================================================================//

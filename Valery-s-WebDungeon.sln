@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1705.4
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Valery-s-WebDungeon", "Valery-s-WebDungeon\Valery-s-WebDungeon.csproj", "{BB8889D2-C1A8-4021-A04E-E277B281F657}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Valery-s-WebDungeon", "Valery-s-WebDungeon\Valery-s-WebDungeon.csproj", "{BB8889D2-C1A8-4021-A04E-E277B281F657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

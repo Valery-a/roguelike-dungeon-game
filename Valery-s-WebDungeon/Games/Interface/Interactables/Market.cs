@@ -10,13 +10,13 @@ namespace Valery_sDungeon
 {
     public class Market
     {
-        public static void LoadShop(Player p)
+        public static async Task LoadShop(Player p)
         {
-            MarketRun(p);
+            await MarketRun(p);
 
         }
 
-        public static void MarketRun(Player p)
+        public static async Task MarketRun(Player p)
         {
 
             int potionP;
@@ -35,13 +35,13 @@ namespace Valery_sDungeon
 
 
 
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine(@"
+                await BlazorConsole.Clear();
+                BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkCyan;
+                await BlazorConsole.WriteLine(@"
                                                        
       .-')    ('-. .-.                _ (`-.  
      ( OO ). ( OO )  /               ( (OO  ) 
@@ -54,149 +54,149 @@ namespace Valery_sDungeon
      `-----' `--' `--'     `-----'  `--'                                                 
                                                     
                 ");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Blue;
-                //Console.WriteLine("             (1)WEAPON     - " + weaponP);
-                //Console.WriteLine("             (2)ARMOR      - " + armorP);
-                //Console.WriteLine("             (3)DIFF MODS  - " + diffP);
-                //Console.WriteLine("             (4)POTION    - " + potionP);
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.Write("             (1)");
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("WEAPON     - " + weaponP);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.Write("             (2)");
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("ARMOR     - " + armorP);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.Write("             (3)");
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("DIFF MODS     - " + diffP);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.Write("             (4)");
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("POTION     - " + potionP);
-                Console.WriteLine(" ");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Blue;
+                //await BlazorConsole.WriteLine("             (1)WEAPON     - " + weaponP);
+                //await BlazorConsole.WriteLine("             (2)ARMOR      - " + armorP);
+                //await BlazorConsole.WriteLine("             (3)DIFF MODS  - " + diffP);
+                //await BlazorConsole.WriteLine("             (4)POTION    - " + potionP);
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkMagenta;
+                await BlazorConsole.Write("             (1)");
+                BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                await BlazorConsole.Write("WEAPON     - " + weaponP);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkMagenta;
+                await BlazorConsole.Write("             (2)");
+                BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                await BlazorConsole.Write("ARMOR     - " + armorP);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkMagenta;
+                await BlazorConsole.Write("             (3)");
+                BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                await BlazorConsole.Write("DIFF MODS     - " + diffP);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkMagenta;
+                await BlazorConsole.Write("             (4)");
+                BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                await BlazorConsole.Write("POTION     - " + potionP);
+                await BlazorConsole.WriteLine(" ");
 
-                Console.ResetColor();
+                BlazorConsole.ResetColor();
 
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                //Console.WriteLine("             PRESS E TO EXIT");
-                //Console.WriteLine("             PRESS Q TO EXIT with style (;");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             PRESS");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(" E ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("TO EXIT");
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             PRESS");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(" Q ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("TO QUIT");
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
-                //Console.ForegroundColor = ConsoleColor.Red;
-                //Console.WriteLine("            " + p.name + "'s STATS ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("             " + p.name);
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("'s STATS ");
-                Console.WriteLine(" ");
-                Console.ResetColor();
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                //Console.WriteLine("             coins - " + p.coins);
-                //Console.WriteLine("             health - " + p.health);
-                //Console.WriteLine("             weapon - " + p.weaponV);
-                //Console.WriteLine("             armor - " + p.armorV);
-                //Console.WriteLine("             potions - " + p.potions);
-                //Console.WriteLine("             difficulty - " + p.diffmods);
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             coins - ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(p.coins);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             health - ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(p.health);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             weapon - ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(p.weaponV);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             armor - ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(p.armorV);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             potions - ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(p.potions);
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("             difficulty - ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(p.diffmods);
-                Console.WriteLine(" ");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("             LEVEL: " + p.level);
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("    -----> [ ");
-                Console.ResetColor();
-                Dungeon.ProgressBar("infront", "back", ((decimal)p.xp / (decimal)p.GetLevelUpV()), 25);
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("  ]<-----");
-                Console.ResetColor();
-                Console.WriteLine(" ");
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                //await BlazorConsole.WriteLine("             PRESS E TO EXIT");
+                //await BlazorConsole.WriteLine("             PRESS Q TO EXIT with style (;");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             PRESS");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(" E ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("TO EXIT");
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             PRESS");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(" Q ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("TO QUIT");
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
+                //await BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                //await BlazorConsole.WriteLine("            " + p.name + "'s STATS ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write("             " + p.name);
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("'s STATS ");
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ResetColor();
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkGreen;
+                //await BlazorConsole.WriteLine("             coins - " + p.coins);
+                //await BlazorConsole.WriteLine("             health - " + p.health);
+                //await BlazorConsole.WriteLine("             weapon - " + p.weaponV);
+                //await BlazorConsole.WriteLine("             armor - " + p.armorV);
+                //await BlazorConsole.WriteLine("             potions - " + p.potions);
+                //await BlazorConsole.WriteLine("             difficulty - " + p.diffmods);
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             coins - ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(p.coins);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             health - ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(p.health);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             weapon - ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(p.weaponV);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             armor - ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(p.armorV);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             potions - ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(p.potions);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("             difficulty - ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                await BlazorConsole.Write(p.diffmods);
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                await BlazorConsole.WriteLine("             LEVEL: " + p.level);
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.Write("    -----> [ ");
+                BlazorConsole.ResetColor();
+                await Dungeon.ProgressBar("infront", "back", ((decimal)p.xp / (decimal)p.GetLevelUpV()), 25);
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.WriteLine("  ]<-----");
+                BlazorConsole.ResetColor();
+                await BlazorConsole.WriteLine(" ");
+                BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
 
 
-                string input = Console.ReadLine()!.ToLower();
+                string input = (await BlazorConsole.ReadLine()!).ToLower();
                 if (input == "4" || input == "potion")
                 {
-                    TryToBuy("potion", potionP, p);
+                    await TryToBuy("potion", potionP, p);
                 }
                 else if (input == "1" || input == "weapon")
                 {
-                    TryToBuy("weapon", weaponP, p);
+                    await TryToBuy("weapon", weaponP, p);
                 }
                 else if (input == "2" || input == "armor")
                 {
-                    TryToBuy("armor", armorP, p);
+                    await TryToBuy("armor", armorP, p);
                 }
                 else if (input == "3" || input == "diff" || input == "difficulty")
                 {
-                    TryToBuy("diff", diffP, p);
+                    await TryToBuy("diff", diffP, p);
                 }
                 else if (input == "q" || input == "Q" || input == "quit" || input == "QUIT")
                 {
@@ -213,7 +213,7 @@ namespace Valery_sDungeon
 
         }
 
-        static void TryToBuy(string item, int cost, Player p)
+        static async Task TryToBuy(string item, int cost, Player p)
         {
             if (p.coins >= cost)
             {
@@ -239,8 +239,8 @@ namespace Valery_sDungeon
             }
             else
             {
-                Console.WriteLine("You need more coins, go kill some foes");
-                Console.ReadKey();
+                await BlazorConsole.WriteLine("You need more coins, go kill some foes");
+                await BlazorConsole.ReadKey();
             }
         }
     }

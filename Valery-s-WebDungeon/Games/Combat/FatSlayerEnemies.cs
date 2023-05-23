@@ -10,20 +10,20 @@ namespace Valery_s_Dungeon
     {
         static Random rand = new Random();
 
-        public static void FatWizardEnemy()
+        public static async Task FatWizardEnemy()
         {
-            Console.Clear();
-            Console.WriteLine("After many battles you reach a door. You proceed to open it and enter the dark room.");
-            Console.WriteLine("You see a very similliar to the other creatures but this one has a long beard and a " +
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("After many battles you reach a door. You proceed to open it and enter the dark room.");
+            await BlazorConsole.WriteLine("You see a very similliar to the other creatures but this one has a long beard and a " +
                 "funny looking hat.");
-            Console.ReadKey();
+            await BlazorConsole.ReadKey();
             if (FatSlayerEnemies.IsChristmass())
             {
-                Enemies.Combat(false, "FatWizard with a snowball", 6, 4);
+                await Enemies.Combat(false, "FatWizard with a snowball", 6, 4);
             }
             else
             {
-                Enemies.Combat(false, "FatWizard", 6, 4);
+                await Enemies.Combat(false, "FatWizard", 6, 4);
             }
 
         }
