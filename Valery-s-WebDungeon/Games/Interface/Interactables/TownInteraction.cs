@@ -76,7 +76,7 @@ namespace Valery_s_Dungeon.Interface
                     BlazorConsole.ForegroundColor = ConsoleColor.Red;
                     await BlazorConsole.WriteLine("Thank you for the note!");
                     BlazorConsole.ForegroundColor = ConsoleColor.DarkRed;
-                    PrintSleeping("F O O L");
+                    await PrintSleeping("F O O L");
                     BlazorConsole.ResetColor();
                     await BlazorConsole.ReadKey();
                     await Endings.BadEnding1();
@@ -202,8 +202,8 @@ namespace Valery_s_Dungeon.Interface
             BlazorConsole.ResetColor();
             await BlazorConsole.WriteLine();
             BlazorConsole.ForegroundColor = ConsoleColor.Green;
-            PrintSleeping(" ZzZ ZzZ ZzZ ZzZ");
-            PrintSleeping(" zZz zZz zZz zZz");
+            await PrintSleeping(" ZzZ ZzZ ZzZ ZzZ");
+            await PrintSleeping(" zZz zZz zZz zZz");
             await BlazorConsole.WriteLine();
             BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
             await BlazorConsole.WriteLine(" Your health has been increased by 1!");

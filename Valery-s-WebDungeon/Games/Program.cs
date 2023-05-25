@@ -12,7 +12,7 @@ using Valery_s_Dungeon;
 public class Dungeon
 {
     public static Random rand = new Random();
-    public static Player currentPlayer;
+    public static Player currentPlayer = null!;
     public static bool mainloop = true;
 
     public static async Task DungeonMain()
