@@ -62,6 +62,9 @@ public class Dungeon
                 case "berserk":
                     p.currentClass = Player.PlayerClass.Berserk;
                     break;
+                case "debug":
+                    await ProgramInterface.Interface();
+                    break;
 
                 default:
                     await BlazorConsole.WriteLine("To proceed, thou art required to select a class from the list provided.");
