@@ -181,22 +181,22 @@ public class Dungeon
 
     public static async Task Print(string text, int speed = 40)
     {
-        //ConsoleKey keyinfo;
-        //do
-        //{
-        //    keyinfo = (await BlazorConsole.ReadKey(true)).Key;
-        //    if (keyinfo == ConsoleKey.Enter || keyinfo == ConsoleKey.Spacebar)
-        //    {
-        //        speed = 0;
-        //        break;
-        //    }
-        //} while (true);
-
+        bool skipping = false;
         foreach (char c in text)
         {
+            while (BlazorConsole.KeyAvailableNoRefresh())
+            {
+                if ((await BlazorConsole.ReadKey(true)).Key is ConsoleKey.Enter)
+                {
+                    skipping = true;
+                }
+            }
             await BlazorConsole.Write(c);
-            await BlazorConsole.RefreshAndDelay(TimeSpan.FromMilliseconds(speed));
-            //System.Threading.Thread.Sleep(speed);
+            if (!skipping)
+            {
+                await BlazorConsole.RefreshAndDelay(TimeSpan.FromMilliseconds(speed));
+                //System.Threading.Thread.Sleep(speed);
+            }
         }
         await BlazorConsole.WriteLine();
     }

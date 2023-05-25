@@ -43,7 +43,7 @@ public partial class ProgramInterface
             while (gameRunning)
             {
                 await UpdateCharacter(); // prawi animaciqta na geroq sprqmo towa koe se natiska
-                await HandleMapUserInput();
+                HandleMapUserInput();
                 if (gameRunning)
                 {
                     await RenderWorldMapView();
@@ -59,7 +59,7 @@ public partial class ProgramInterface
         finally
         {
             await BlazorConsole.Clear();
-            Dungeon.Print("Back to the dungeons!");
+            await Dungeon.Print("Back to the dungeons!");
             BlazorConsole.CursorVisible = true;
         }
     }
@@ -232,11 +232,11 @@ public partial class ProgramInterface
         await Casino.LoadCasino();
     }
 
-    static async Task HandleMapUserInput()
+    static void HandleMapUserInput()
     {
-        while (await BlazorConsole.KeyAvailable())
+        while (BlazorConsole.KeyAvailableNoRefresh())
         {
-            ConsoleKey key = (await BlazorConsole.ReadKey(true)).Key;
+            ConsoleKey key = (BlazorConsole.ReadKeyNoRefresh(true)).Key;
             switch (key)
             {
                 case
@@ -320,10 +320,10 @@ public partial class ProgramInterface
         StringBuilder sb = new(width * height);
         for (int j = 0; j < height; j++)
         {
-            if (OperatingSystem.IsWindows() && j == height - 1)
-            {
-                break;
-            }
+            //if (OperatingSystem.IsWindows() && j == height - 1)
+            //{
+            //    break;
+            //}
 
             for (int i = 0; i < width; i++)
             {
@@ -411,10 +411,11 @@ public partial class ProgramInterface
                 char c = tileRender[pixelJ * 8 + pixelI];
                 sb.Append(char.IsWhiteSpace(c) ? ' ' : c);
             }
-            if (!OperatingSystem.IsWindows() && j < height - 1)
-            {
-                sb.AppendLine();
-            }
+            //if (!OperatingSystem.IsWindows() && j < height - 1)
+            //{
+            //    sb.AppendLine();
+            //}
+            sb.AppendLine();
         }
         await BlazorConsole.SetCursorPosition(0, 0);
         await BlazorConsole.Write(sb);
@@ -425,7 +426,7 @@ public partial class ProgramInterface
     RestartRender:
         int width = BlazorConsole.WindowWidth;
         int height = BlazorConsole.WindowHeight;
-        if (OperatingSystem.IsWindows())
+        //if (OperatingSystem.IsWindows())
         {
             try
             {
