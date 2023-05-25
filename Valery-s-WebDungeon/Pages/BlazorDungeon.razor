@@ -1,0 +1,34 @@
+﻿@using System
+
+@page "/BlazorDungeon"
+
+<PageTitle>BlazorDungeon</PageTitle>
+
+<h1>BlazorDungeon</h1>
+
+<div class="console-window text-center my-3" @onkeydown="@BlazorConsole.OnKeyDown" tabindex="0">
+	<div class="d-inline-block bg-dark text-light border p-2 text-start shadow padding-0">
+		<pre class="console">
+		<code>@BlazorConsole.State</code>
+		</pre>
+	</div>
+	<div>
+		@*<button class="btn btn-primary" @onclick="() => BlazorConsole.EnqueueInput(ConsoleKey.Enter)     ">enter</button>*@
+	</div>
+</div>
+
+<div class="alert alert-secondary" role="alert">
+	&#9000; Keyboard input is supported if you <strong>click</strong> on the game.
+</div>
+
+@code
+{
+	public BlazorDungeon()
+	{
+		BlazorConsole.WindowWidth = 180;
+		BlazorConsole.WindowHeight = 70;
+		BlazorConsole.TriggerRefresh = StateHasChanged;
+	}
+
+	protected override void OnInitialized() => InvokeAsync(Dungeon.DungeonMain);
+}

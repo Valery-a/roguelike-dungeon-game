@@ -32,22 +32,22 @@ public partial class ProgramInterface
     };
 
 
-    public static void Interface()
+    public static async Task Interface()
     {
         Exception? exception = null;
         try
         {
-            Console.CursorVisible = false;
+            BlazorConsole.CursorVisible = false;
             Initialize(); // suzdava mapa
-            OpeningScreen(); // izliza teksta za nachalo
+            await OpeningScreen(); // izliza teksta za nachalo
             while (gameRunning)
             {
-                UpdateCharacter(); // prawi animaciqta na geroq sprqmo towa koe se natiska
+                await UpdateCharacter(); // prawi animaciqta na geroq sprqmo towa koe se natiska
                 HandleMapUserInput();
                 if (gameRunning)
                 {
-                    RenderWorldMapView();
-                    SleepAfterRender();
+                    await RenderWorldMapView();
+                    await SleepAfterRender();
                 }
             }
         }
@@ -58,9 +58,9 @@ public partial class ProgramInterface
         }
         finally
         {
-            Console.Clear();
-            Dungeon.Print("Back to the dungeons!");
-            Console.CursorVisible = true;
+            await BlazorConsole.Clear();
+            await Dungeon.Print("Back to the dungeons!");
+            BlazorConsole.CursorVisible = true;
         }
     }
 
@@ -76,12 +76,12 @@ public partial class ProgramInterface
         Character.MapAnimation = Sprites.IdleRight;
     }
 
-    static void OpeningScreen()
+    static async Task OpeningScreen()
     {
-        TownInteraction.OpeningScreenRun();
+        await TownInteraction.OpeningScreenRun();
     }
 
-    static void UpdateCharacter()
+    static async Task UpdateCharacter()
     {
         if (Character.MapAnimation == Sprites.RunUp && Character.MapAnimationFrame is 2 or 4 or 6) Character.J--;
         if (Character.MapAnimation == Sprites.RunDown && Character.MapAnimationFrame is 2 or 4 or 6) Character.J++;
@@ -91,36 +91,36 @@ public partial class ProgramInterface
 
         if (Character.Moved)
         {
-            HandleCharacterMoved();
+            await HandleCharacterMoved();
             Character.Moved = false;
         }
     }
 
-    static void HandleCharacterMoved()
+    static async Task HandleCharacterMoved()
     {
         switch (Map[Character.TileJ][Character.TileI])
         {
-            case 'i': SleepAtInn(); break;
-            case 'N': TalkToNoter(); break;
-            case 'J': StartJhinPuzzles(); break;
-            case 's': ShopAtStore(); break;
-            case 'z': PlayAtCasino(); break;
-            case 'C': ChurchInteract(); break;
-            case 'c': OpenChest(); break;
+            case 'i': await SleepAtInn(); break;
+            case 'N': await TalkToNoter(); break;
+            case 'J': await StartJhinPuzzles(); break;
+            case 's': await ShopAtStore(); break;
+            case 'z': await PlayAtCasino(); break;
+            case 'C': await ChurchInteract(); break;
+            case 'c': await OpenChest(); break;
             case '0': TransitionMapToTown(); break;
             case '1': TransitionMapToField(); break;
             case '7': BackToDungeons(); break;
-            case 'l': TalkToLady(); break;
-            case 'G': TalkToGuard(); break;
-            case 'g': TalkToOldGuy(); break;
-            case 'I': TalkToMermaid(); break;
+            case 'l': await TalkToLady(); break;
+            case 'G': await TalkToGuard(); break;
+            case 'g': await TalkToOldGuy(); break;
+            case 'I': await TalkToMermaid(); break;
         }
     }
 
-    public static void PressEnterToContiue()
+    public static async Task PressEnterToContiue()
     {
     GetInput:// izpolzva me go za da izlezem ot loopa kato se natisne "pravilniq" buton
-        ConsoleKey key = Console.ReadKey(true).Key;
+        ConsoleKey key = (await BlazorConsole.ReadKey(true)).Key;
         switch (key)
         {
             case ConsoleKey.Enter:
@@ -130,52 +130,53 @@ public partial class ProgramInterface
         }
     }
 
-    static void OpenChest()
+    static async Task OpenChest()
     {
-        TownInteraction.OpenChestRun();
+        await TownInteraction.OpenChestRun();
     }
 
-    static void TalkToNoter()
+    static async Task TalkToNoter()
     {
-        TownInteraction.TalkToNoterRun();
+        await TownInteraction.TalkToNoterRun();
     }
 
-    static void TalkToOldGuy()
+    static async Task TalkToOldGuy()
     {
-        TownInteraction.TalkToOldGuyRun();
+        await TownInteraction.TalkToOldGuyRun();
     }
 
-    static void TalkToLady()
+    static async Task TalkToLady()
     {
-        TownInteraction.TalkToLadyRun();
+        await TownInteraction.TalkToLadyRun();
     }
 
-    static void SleepAtInn()
+    static async Task SleepAtInn()
     {
-        TownInteraction.SleepAtInnRun();
+        await TownInteraction.SleepAtInnRun();
     }
 
-    static void TalkToMermaid()
+    static async Task TalkToMermaid()
     {
-        TownInteraction.TalkToMermaidRun();
+        await TownInteraction.TalkToMermaidRun();
     }
 
-    static void TalkToGuard()
+    static async Task TalkToGuard()
 
     {
-        TownInteraction.TalkToGuardRun();
+        await TownInteraction.TalkToGuardRun();
 
     }
 
-    public static void PrintSleeping(string text, int speed = 300)
+    public static async Task PrintSleeping(string text, int speed = 300)
     {
         foreach (char c in text)
         {
-            Console.Write(c);
-            System.Threading.Thread.Sleep(speed);
+            await BlazorConsole.Write(c);
+            await BlazorConsole.RefreshAndDelay(TimeSpan.FromMilliseconds(speed));
+            //System.Threading.Thread.Sleep(speed);
 
         }
-        Console.WriteLine();
+        await BlazorConsole.WriteLine();
     }
 
     static void TransitionMapToTown()
@@ -200,42 +201,42 @@ public partial class ProgramInterface
         Character.J = j * 4;
     }
 
-    static void ShopAtStore()
+    static async Task ShopAtStore()
     {
-        Console.Clear();
-        Market.LoadShop(Dungeon.currentPlayer);
+        await BlazorConsole.Clear();
+        await Market.LoadShop(Dungeon.currentPlayer);
     }
 
-    static void StartJhinPuzzles()
+    static async Task StartJhinPuzzles()
     {
         Random rand = new Random();
         switch (rand.Next(0, 2))
         {
             case 0:
-                Puzzles.Puzzle2();
+                await Puzzles.Puzzle2();
                 break;
             case 1:
-                Puzzles.Puzzle1();
+                await Puzzles.Puzzle1();
                 break;
         }
     }
-    static void ChurchInteract()
+    static async Task ChurchInteract()
     {
-        Console.Clear();
-        Church.LoadChurch();
+        await BlazorConsole.Clear();
+        await Church.LoadChurch();
     }
 
-    static void PlayAtCasino()
+    static async Task PlayAtCasino()
     {
-        Console.Clear();
-        Casino.LoadCasino();
+        await BlazorConsole.Clear();
+        await Casino.LoadCasino();
     }
 
     static void HandleMapUserInput()
     {
-        while (Console.KeyAvailable)
+        while (BlazorConsole.KeyAvailableNoRefresh())
         {
-            ConsoleKey key = Console.ReadKey(true).Key;
+            ConsoleKey key = (BlazorConsole.ReadKeyNoRefresh(true)).Key;
             switch (key)
             {
                 case
@@ -279,14 +280,15 @@ public partial class ProgramInterface
         }
     }
 
-    static void SleepAfterRender()
+    static async Task SleepAfterRender()
     {
         // frame rate control
         DateTime now = DateTime.Now;
         TimeSpan sleep = TimeSpan.FromMilliseconds(33) - (now - previoiusRender);
         if (sleep > TimeSpan.Zero)
         {
-            Thread.Sleep(sleep);
+            await BlazorConsole.RefreshAndDelay(sleep);
+            //Thread.Sleep(sleep);
         }
         previoiusRender = DateTime.Now;
     }
@@ -306,11 +308,11 @@ public partial class ProgramInterface
         return null;
     }
 
-    static void RenderWorldMapView()
+    static async Task RenderWorldMapView()
     {
-        Console.CursorVisible = false;
+        BlazorConsole.CursorVisible = false;
 
-        var (width, height) = GetWidthAndHeight();
+        var (width, height) = await GetWidthAndHeight();
         int heightCutOff = (int)(height * .80);
         int midWidth = width / 2;
         int midHeight = heightCutOff / 2;
@@ -318,10 +320,10 @@ public partial class ProgramInterface
         StringBuilder sb = new(width * height);
         for (int j = 0; j < height; j++)
         {
-            if (OperatingSystem.IsWindows() && j == height - 1)
-            {
-                break;
-            }
+            //if (OperatingSystem.IsWindows() && j == height - 1)
+            //{
+            //    break;
+            //}
 
             for (int i = 0; i < width; i++)
             {
@@ -409,30 +411,31 @@ public partial class ProgramInterface
                 char c = tileRender[pixelJ * 8 + pixelI];
                 sb.Append(char.IsWhiteSpace(c) ? ' ' : c);
             }
-            if (!OperatingSystem.IsWindows() && j < height - 1)
-            {
-                sb.AppendLine();
-            }
+            //if (!OperatingSystem.IsWindows() && j < height - 1)
+            //{
+            //    sb.AppendLine();
+            //}
+            sb.AppendLine();
         }
-        Console.SetCursorPosition(0, 0);
-        Console.Write(sb);
+        await BlazorConsole.SetCursorPosition(0, 0);
+        await BlazorConsole.Write(sb);
     }
 
-    static (int Width, int Height) GetWidthAndHeight()
+    static async Task<(int Width, int Height)> GetWidthAndHeight()
     {
     RestartRender:
-        int width = Console.WindowWidth;
-        int height = Console.WindowHeight;
-        if (OperatingSystem.IsWindows())
+        int width = BlazorConsole.WindowWidth;
+        int height = BlazorConsole.WindowHeight;
+        //if (OperatingSystem.IsWindows())
         {
             try
             {
-                if (Console.BufferHeight != height) Console.BufferHeight = height;
-                if (Console.BufferWidth != width) Console.BufferWidth = width;
+                if (BlazorConsole.BufferHeight != height) BlazorConsole.BufferHeight = height;
+                if (BlazorConsole.BufferWidth != width) BlazorConsole.BufferWidth = width;
             }
             catch (Exception)
             {
-                Console.Clear();
+                await BlazorConsole.Clear();
                 goto RestartRender;
             }
         }

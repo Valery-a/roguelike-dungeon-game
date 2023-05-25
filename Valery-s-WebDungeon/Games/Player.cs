@@ -20,7 +20,6 @@ namespace Valery_s_Dungeon
         public int damage = 1;
         public int health = 20;
         public int coins = 10;
-        public int id;
         public string? name;
         public int potions = 3;
         public int weaponV = 1;
@@ -76,18 +75,18 @@ namespace Valery_s_Dungeon
             }
         }
 
-        public void LevelUP()
+        public async Task LevelUP()
         {
             while (CanlevelUP())
             {
                 xp -= GetLevelUpV();
                 level++;
             }
-            Console.Clear();
+            await BlazorConsole.Clear();
             //dobawqm cvqt
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Dungeon.Print("You just leveled up! Your new level is " + level + " !!!");
-            Console.ResetColor();
+            BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+            await Dungeon.Print("You just leveled up! Your new level is " + level + " !!!");
+            BlazorConsole.ResetColor();
         }
     }
 }

@@ -8,7 +8,7 @@ using Valery_s_Dungeon;
 public class BlackJack
 {
 
-    public static void Play()
+    public static async Task Play()
     {
         Exception? exception = null;
 
@@ -33,8 +33,8 @@ public class BlackJack
             activeHand = 0;
             while (!(state is State.PlaceBet && playerMoney < minimumBet))
             {
-                Render();
-                switch (Console.ReadKey(true).Key)
+                await Render();
+                switch ((await BlazorConsole.ReadKey(true)).Key)
                 {
                     case ConsoleKey.Enter:
                         switch (state)
@@ -142,9 +142,9 @@ public class BlackJack
                 }
             }
             state = State.OutOfMoney;
-            Render();
+            await Render();
         GetEnter:
-            switch (Console.ReadKey(true).Key)
+            switch ((await BlazorConsole.ReadKey(true)).Key)
             {
                 case ConsoleKey.Enter: return;
                 default: goto GetEnter;
@@ -157,114 +157,114 @@ public class BlackJack
         }
 
 
-        void Render()
+        async Task Render()
         {
             Dungeon.currentPlayer.coins = playerMoney;
-            Console.CursorVisible = false;
-            Console.Clear();
+            BlazorConsole.CursorVisible = false;
+            await BlazorConsole.Clear();
             if (state is State.IntroScreen)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(MainSprites.Gambit);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(" ");
-                Console.WriteLine("Hear ye, hear ye! Shouldst thou procure the services of a JESTER, thou shalt receive a payment of one and a half times thy original wager.");
-                Console.WriteLine("'Tis surely a profitable enterprise, methinks!.");
-                Console.WriteLine();
-                Console.WriteLine("Thusly doth the JESTER ply his trade:");
-                Console.WriteLine("He shall draw from the deck until his hand's score doth reach no less than 17.");
-                Console.WriteLine();
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("           Hit [enter] to continiue!)");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                Console.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Green;
+                await BlazorConsole.WriteLine(MainSprites.Gambit);
+                BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Green;
+                await BlazorConsole.WriteLine(" ");
+                await BlazorConsole.WriteLine("Hear ye, hear ye! Shouldst thou procure the services of a JESTER, thou shalt receive a payment of one and a half times thy original wager.");
+                await BlazorConsole.WriteLine("'Tis surely a profitable enterprise, methinks!.");
+                await BlazorConsole.WriteLine();
+                await BlazorConsole.WriteLine("Thusly doth the JESTER ply his trade:");
+                await BlazorConsole.WriteLine("He shall draw from the deck until his hand's score doth reach no less than 17.");
+                await BlazorConsole.WriteLine();
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ForegroundColor = ConsoleColor.Blue;
+                await BlazorConsole.WriteLine("           Hit [enter] to continiue!)");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                BlazorConsole.ResetColor();
                 return;
             }
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine($"  JESTER's deck, comprised of the following cards: {deck.Count}");
-            Console.WriteLine($"  The Discard Pile, where castoff cards doth reside: {discardPile.Count}");
-            Console.WriteLine($"  Your hoard of coins: ${playerMoney}");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
+            BlazorConsole.ForegroundColor = ConsoleColor.Red;
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            BlazorConsole.ForegroundColor = ConsoleColor.DarkGreen;
+            await BlazorConsole.WriteLine($"  JESTER's deck, comprised of the following cards: {deck.Count}");
+            await BlazorConsole.WriteLine($"  The Discard Pile, where castoff cards doth reside: {discardPile.Count}");
+            await BlazorConsole.WriteLine($"  Your hoard of coins: ${playerMoney}");
+            BlazorConsole.ForegroundColor = ConsoleColor.Red;
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            BlazorConsole.ResetColor();
+            BlazorConsole.ForegroundColor = ConsoleColor.Green;
             if (state is not State.IntroScreen &&
                 state is not State.PlaceBet &&
                 state is not State.OutOfMoney)
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine();
-                Console.WriteLine($"  Jester's Hand{(dealerHand.Any(c => !c.FaceUp) ? "" : ($" ({ScoreCards(dealerHand)})"))}:");
-                Console.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkRed;
+                await BlazorConsole.WriteLine();
+                await BlazorConsole.WriteLine($"  Jester's Hand{(dealerHand.Any(c => !c.FaceUp) ? "" : ($" ({ScoreCards(dealerHand)})"))}:");
+                BlazorConsole.ResetColor();
                 for (int i = 0; i < Card.RenderHeight; i++)
                 {
-                    Console.Write("    ");
+                    await BlazorConsole.Write("    ");
                     for (int j = 0; j < dealerHand.Count; j++)
                     {
                         string s = dealerHand[j].Render()[i];
-                        Console.Write(j < dealerHand.Count - 1 ? s[..5] : s);
+                        await BlazorConsole.Write(j < dealerHand.Count - 1 ? s[..5] : s);
                     }
-                    Console.WriteLine();
+                    await BlazorConsole.WriteLine();
                 }
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine($"  Your Hand{(playerHands.Count > 1 ? "s" : "")}:");
-                Console.ResetColor();
+                await BlazorConsole.WriteLine();
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                await BlazorConsole.WriteLine($"  Your Hand{(playerHands.Count > 1 ? "s" : "")}:");
+                BlazorConsole.ResetColor();
                 for (int hand = 0; hand < playerHands.Count; hand++)
                 {
                     for (int i = 0; i < Card.RenderHeight; i++)
                     {
                         if (hand == activeHand)
                         {
-                            Console.Write(i == Card.RenderHeight / 2 ? "    " : "    ");
+                            await BlazorConsole.Write(i == Card.RenderHeight / 2 ? "    " : "    ");
                         }
                         else
                         {
-                            Console.Write("    ");
+                            await BlazorConsole.Write("    ");
                         }
                         for (int j = 0; j < playerHands[hand].Cards.Count; j++)
                         {
                             string s = playerHands[hand].Cards[j].Render()[i];
-                            Console.Write(j < playerHands[hand].Cards.Count - 1 ? s[..5] : s);
+                            await BlazorConsole.Write(j < playerHands[hand].Cards.Count - 1 ? s[..5] : s);
                         }
-                        Console.WriteLine();
+                        await BlazorConsole.WriteLine();
                     }
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"    Hand Score: {ScoreCards(playerHands[hand].Cards)}");
-                    Console.WriteLine($"    Hand Bet: {(playerHands[hand].Bet > 0 ? $"${playerHands[hand].Bet}" : "---")}");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Blue;
+                    await BlazorConsole.WriteLine($"    Hand Score: {ScoreCards(playerHands[hand].Cards)}");
+                    await BlazorConsole.WriteLine($"    Hand Bet: {(playerHands[hand].Bet > 0 ? $"${playerHands[hand].Bet}" : "---")}");
+                    BlazorConsole.ResetColor();
                 }
             }
-            Console.WriteLine();
+            await BlazorConsole.WriteLine();
             if (discardShuffledIntoDeck)
             {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.WriteLine("  The Jester shuffled the discard pile into the deck.");
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.");
-                Console.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkGray;
+                await BlazorConsole.WriteLine("'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.");
+                BlazorConsole.ResetColor();
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkBlue;
+                await BlazorConsole.WriteLine("  The Jester shuffled the discard pile into the deck.");
+                BlazorConsole.ForegroundColor = ConsoleColor.DarkGray;
+                await BlazorConsole.WriteLine("'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.'.");
+                BlazorConsole.ResetColor();
                 discardShuffledIntoDeck = false;
             }
 
@@ -273,162 +273,162 @@ public class BlackJack
             {
 
                 case State.PlaceBet:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("  Place your bet...");
-                    Console.WriteLine("  Use [up] or [down] arrows to increase or decrease bet.");
-                    Console.WriteLine("  Hit [enter] to place your bet.");
-                    Console.WriteLine("  Hit [e] twice to run away.");
-                    Console.WriteLine($"  Bet (${minimumBet}-${playerMoney}): ${bet}");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                    await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Green;
+                    await BlazorConsole.WriteLine("  Place your bet...");
+                    await BlazorConsole.WriteLine("  Use [up] or [down] arrows to increase or decrease bet.");
+                    await BlazorConsole.WriteLine("  Hit [enter] to place your bet.");
+                    await BlazorConsole.WriteLine("  Hit [e] twice to run away.");
+                    await BlazorConsole.WriteLine($"  Bet (${minimumBet}-${playerMoney}): ${bet}");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Red;
+                    await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    BlazorConsole.ResetColor();
                     shouldExit = true;
                     break;
                 case State.ConfirmDealtBlackjack:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("  You were dealt a Jester! (21). You win this hand!");
-                    Console.WriteLine("  Your bet was payed out.");
-                    Console.WriteLine("  You have gained " + x + "XP!");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                    await BlazorConsole.WriteLine("  You were dealt a Jester! (21). You win this hand!");
+                    await BlazorConsole.WriteLine("  Your bet was payed out.");
+                    await BlazorConsole.WriteLine("  You have gained " + x + "XP!");
                     Dungeon.currentPlayer.xp += x;
                     if (Dungeon.currentPlayer.CanlevelUP())
                     {
-                        Dungeon.currentPlayer.LevelUP();
+                        await Dungeon.currentPlayer.LevelUP();
                     }
-                    Console.WriteLine("  Press [enter] to continue...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    await BlazorConsole.WriteLine("  Press [enter] to continue...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.ChooseMove:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("  Choose your move...");
-                    Console.WriteLine("  (S)tay");
-                    Console.WriteLine("  (H)it");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.DarkCyan;
+                    await BlazorConsole.WriteLine("  Choose your move...");
+                    await BlazorConsole.WriteLine("  (S)tay");
+                    await BlazorConsole.WriteLine("  (H)it");
                     if (CanChop())
                     {
-                        Console.WriteLine("  (C)hop");
+                        await BlazorConsole.WriteLine("  (C)hop");
                     }
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.ConfirmBust:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine($"  Bust! Your hand ({ScoreCards(playerHands[activeHand].Cards)}) is greater than 21.");
-                    Console.WriteLine("  You lose this bet.");
-                    Console.WriteLine("  Press [enter] to continue...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.DarkRed;
+                    await BlazorConsole.WriteLine($"  Bust! Your hand ({ScoreCards(playerHands[activeHand].Cards)}) is greater than 21.");
+                    await BlazorConsole.WriteLine("  You lose this bet.");
+                    await BlazorConsole.WriteLine("  Press [enter] to continue...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.ConfirmChop:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    Console.WriteLine("  You Chop your hand and the dealer dealt you an additional");
-                    Console.WriteLine("  card to each Chop.");
-                    Console.WriteLine("  Press [enter] to continue...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.DarkBlue;
+                    await BlazorConsole.WriteLine("  You Chop your hand and the dealer dealt you an additional");
+                    await BlazorConsole.WriteLine("  card to each Chop.");
+                    await BlazorConsole.WriteLine("  Press [enter] to continue...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.ConfirmDealerDraw:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("  The Jester drew a card to his hand.");
-                    Console.WriteLine("  Press [enter] to continue...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Blue;
+                    await BlazorConsole.WriteLine("  The Jester drew a card to his hand.");
+                    await BlazorConsole.WriteLine("  Press [enter] to continue...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.ConfirmDealerCardFlip:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("  The Jester flipped over his second card.");
-                    Console.WriteLine("  Press [enter] to continue...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Blue;
+                    await BlazorConsole.WriteLine("  The Jester flipped over his second card.");
+                    await BlazorConsole.WriteLine("  Press [enter] to continue...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.ConfirmLoss:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine($"  Lost! The Jester ({ScoreCards(dealerHand)}) beat your hand ({ScoreCards(playerHands[activeHand].Cards)}).");
-                    Console.WriteLine("  Press [enter] to continue...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.DarkRed;
+                    await BlazorConsole.WriteLine($"  Lost! The Jester ({ScoreCards(dealerHand)}) beat your hand ({ScoreCards(playerHands[activeHand].Cards)}).");
+                    await BlazorConsole.WriteLine("  Press [enter] to continue...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.ConfirmDraw:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"  Draw! This hand was equal to the Jester's hand ({ScoreCards(dealerHand)}).");
-                    Console.WriteLine($"  Your bet was returned to you.");
-                    Console.WriteLine("  Press [enter] to continue...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor(); break;
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
+                    await BlazorConsole.WriteLine($"  Draw! This hand was equal to the Jester's hand ({ScoreCards(dealerHand)}).");
+                    await BlazorConsole.WriteLine($"  Your bet was returned to you.");
+                    await BlazorConsole.WriteLine("  Press [enter] to continue...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor(); break;
                 case State.ConfirmWin:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"  Win! The Jester {(ScoreCards(dealerHand) > 21 ? "busted" : "stands")} ({ScoreCards(dealerHand)}).");
-                    Console.WriteLine($"  Your bet was payed out.");
-                    Console.WriteLine("  You have gained " + x + "XP!");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                    await BlazorConsole.WriteLine($"  Win! The Jester {(ScoreCards(dealerHand) > 21 ? "busted" : "stands")} ({ScoreCards(dealerHand)}).");
+                    await BlazorConsole.WriteLine($"  Your bet was payed out.");
+                    await BlazorConsole.WriteLine("  You have gained " + x + "XP!");
                     Dungeon.currentPlayer.xp += x;
                     if (Dungeon.currentPlayer.CanlevelUP())
                     {
-                        Dungeon.currentPlayer.LevelUP();
+                        await Dungeon.currentPlayer.LevelUP();
                     }
-                    Console.WriteLine("  Press [enter] to continue!");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    await BlazorConsole.WriteLine("  Press [enter] to continue!");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 case State.OutOfMoney:
                     shouldExit = false;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine($"  You ran out of money. Better luck next time.");
-                    Console.WriteLine("  Press [enter] to close the game...");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-                    Console.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
+                    BlazorConsole.ForegroundColor = ConsoleColor.DarkRed;
+                    await BlazorConsole.WriteLine($"  You ran out of money. Better luck next time.");
+                    await BlazorConsole.WriteLine("  Press [enter] to close the game...");
+                    BlazorConsole.ForegroundColor = ConsoleColor.Magenta;
+                    await BlazorConsole.WriteLine("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+                    BlazorConsole.ResetColor();
                     break;
                 default:
                     throw new NotImplementedException();
