@@ -29,13 +29,17 @@ jobs:
       run: sed -i 's/\/?p=\//\/roguelike-dungeon-game\/?p=\//g' Valery-s-WebDungeon/bin/Release/net7.0/publish/wwwroot/404.html
     - name: .nojekyll
       run: touch Valery-s-WebDungeon/bin/Release/net7.0/publish/wwwroot/.nojekyll
-    - name: deploy to github-pages branch
+    - name: CODEOWNERS
+      run: echo "* @Valery-a" > Valery-s-WebDungeon/bin/Release/net7.0/publish/wwwroot/CODEOWNERS
+    - name: git config
       run: |
-        cd Valery-s-WebDungeon/bin/Release/net7.0/publish/wwwroot
-        echo "* @Valery-a" > CODEOWNERS
-        git init --initial-branch=github-pages
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+    - name: force push to github-pages
+      run: |
+        cd Valery-s-WebDungeon/bin/Release/net7.0/publish/wwwroot
+        git init --initial-branch=github-pages
         git add .
-        git commit -m 'deploy to github-pages branch'
+        git commit -m 'push to github-pages'
+        echo "git push --force ..."
         git push --force "https://${{ secrets.VALERY_DUNGEON_SECRET }}@github.com/${GITHUB_REPOSITORY}.git" github-pages:github-pages
