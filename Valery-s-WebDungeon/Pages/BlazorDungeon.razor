@@ -1,10 +1,9 @@
 ﻿@using System
 
 @page "/BlazorDungeon"
+<PageTitle>Dungeon</PageTitle>
 
-<PageTitle>BlazorDungeon</PageTitle>
-
-<h1>BlazorDungeon</h1>
+@*<h1>BlazorDungeon</h1>*@
 
 <div class="console-window text-center my-3" @onkeydown="@BlazorConsole.OnKeyDown" tabindex="0">
     <div class="d-inline-block bg-dark text-light border p-2 text-start shadow padding-0">
@@ -17,16 +16,16 @@
     </div>
 </div>
 
-<div class="alert alert-secondary" role="alert">
-    &#9000; Keyboard input is supported if you <strong>click</strong> on the game.
-</div>
+@*<div class="alert alert-secondary" role="alert">
+        &#9000; Keyboard input is supported if you <strong>click</strong> on the game.
+    </div>*@
 
 @code
 {
     public BlazorDungeon()
     {
-        BlazorConsole.WindowWidth = 100;
-        BlazorConsole.WindowHeight = 35;
+        BlazorConsole.WindowWidth = 140;
+        BlazorConsole.WindowHeight = 40;
         BlazorConsole.TriggerRefresh = StateHasChanged;
     }
 

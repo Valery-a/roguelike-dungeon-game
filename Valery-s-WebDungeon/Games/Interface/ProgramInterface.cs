@@ -26,11 +26,13 @@ public partial class ProgramInterface
         get => _map!;
         set => _map = value;
     }
+
     private static readonly string[] maptext = new[]
         {
         " ",
-        "                         MOVE: W,A,S,D & arrow keys",
-        "                         INTERACTION: move inside the object"
+        "                                                     MOVE: W,A,S,D & arrow keys",
+        "                                                   ---------------------------------------",
+        "                                                     INTERACTION: move inside the object"
     };
 
 
@@ -345,7 +347,6 @@ public partial class ProgramInterface
                     }
                     continue;
                 }
-
                 // map outline
                 if (i is 0 && j is 0)
                 {
@@ -389,7 +390,9 @@ public partial class ProgramInterface
                 {
                     int ci = i - (midWidth - 3);
                     int cj = j - (midHeight - 1);
+                    BlazorConsole.ForegroundColor = ConsoleColor.Red;
                     string characterMapRender = Character.Render;
+                    BlazorConsole.ResetColor();
                     sb.Append(characterMapRender[cj * 8 + ci]);
                     continue;
                 }
