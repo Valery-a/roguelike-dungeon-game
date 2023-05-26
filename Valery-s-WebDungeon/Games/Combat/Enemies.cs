@@ -85,6 +85,7 @@ namespace Valery_s_Dungeon
 
         public static async Task Combat(bool random, string name, int power, int health)
         {
+
             string n = "";
             int p = 0;
             int h = 0;
@@ -122,7 +123,7 @@ namespace Valery_s_Dungeon
                 BlazorConsole.ResetColor();
                 await BlazorConsole.WriteLine(" ");
                 BlazorConsole.ForegroundColor = ConsoleColor.DarkCyan;
-                await BlazorConsole.WriteLine("========================================================================");
+                await BlazorConsole.WriteLine("=========================");
                 Message msg1 = new Message();
                 msg1.parts.Add(new Message.MessagePart("||", ConsoleColor.DarkCyan));
                 msg1.parts.Add(new Message.MessagePart("(1)Attack", ConsoleColor.Blue));
@@ -144,7 +145,7 @@ namespace Valery_s_Dungeon
                 message?.Render();
                 await BlazorConsole.WriteLine(" ");
                 BlazorConsole.ForegroundColor = ConsoleColor.DarkCyan;
-                await BlazorConsole.WriteLine("========================================================================");
+                await BlazorConsole.WriteLine("=========================");
                 BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
                 await BlazorConsole.WriteLine("Potions:" + Dungeon.currentPlayer.potions + "  Health: " + Dungeon.currentPlayer.health);
                 BlazorConsole.ResetColor();
