@@ -27,8 +27,10 @@ public partial class ProgramInterface
         set => _map = value;
     }
     private static readonly string[] maptext = new[]
-    {
-        ""
+        {
+        " ",
+        "                         MOVE: W,A,S,D & arrow keys",
+        "                         INTERACTION: move inside the object"
     };
 
 

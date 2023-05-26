@@ -11,8 +11,11 @@ public static class Maps
     {
         if (tileJ < 0 || tileJ >= map.Length || tileI < 0 || tileI >= map[tileJ].Length)
         {
-            if (map == Field) return Sprites.Mountain;
-            else if (map == Town) return Sprites.Tree;
+            //if (map == Field) return Sprites.Mountain;
+            //else if (map == Town) return Sprites.Tree;
+            //return Sprites.Open;
+            if (map == Field) return Sprites.Open;
+            else if (map == Town) return Sprites.Open;
             return Sprites.Open;
         }
         return map[tileJ][tileI] switch
