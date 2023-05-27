@@ -102,12 +102,12 @@ namespace Valery_sDungeon
                 await BlazorConsole.Write("TO EXIT");
                 await BlazorConsole.WriteLine(" ");
                 BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
-                await BlazorConsole.Write("             PRESS");
-                BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
-                await BlazorConsole.Write(" Q ");
-                BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
-                await BlazorConsole.Write("TO QUIT");
-                await BlazorConsole.WriteLine(" ");
+                //await BlazorConsole.Write("             PRESS");
+                //BlazorConsole.ForegroundColor = ConsoleColor.Yellow;
+                //await BlazorConsole.Write(" Q ");
+                //BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
+                //await BlazorConsole.Write("TO QUIT");
+                //await BlazorConsole.WriteLine(" ");
                 BlazorConsole.ForegroundColor = ConsoleColor.Cyan;
                 await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                 await BlazorConsole.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -198,10 +198,10 @@ namespace Valery_sDungeon
                 {
                     await TryToBuy("diff", diffP, p);
                 }
-                else if (input == "q" || input == "Q" || input == "quit" || input == "QUIT")
-                {
-                    Dungeon.QUIT();
-                }
+                //else if (input == "q" || input == "Q" || input == "quit" || input == "QUIT")
+                //{
+                //    Dungeon.QUIT();
+                //}
                 else if (input == "e" || input == "E" || input == "exit" || input == "EXIT")
 
                 {
