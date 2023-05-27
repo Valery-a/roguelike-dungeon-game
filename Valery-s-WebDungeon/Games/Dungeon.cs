@@ -35,6 +35,8 @@ public class Dungeon
         await BlazorConsole.WriteLine(MainSprites.Logo);
         BlazorConsole.ResetColor();
         await BlazorConsole.ReadKey();
+        await Task.Delay(1000);
+        await BlazorConsole.Clear();
         BlazorConsole.ForegroundColor = ConsoleColor.DarkYellow;
         await Print("Slayer, tell me, what shall your name be?");
         BlazorConsole.ResetColor();
