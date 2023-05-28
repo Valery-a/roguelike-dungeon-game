@@ -1,36 +1,20 @@
 ﻿@page "/"
 
 <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-    <h1>WELCOME TO RDCG</h1>
+    <h1 style="font-family: 'Impact'; text-align: center; font-size: 5rem; color: blue; text-shadow: 0 0 10px blue; animation: pulse 1s infinite;">WELCOME TO RDCG</h1>
+
     <div class="game-intro">
         <div class="intro-box">
-            <p>Prepare yourself for a journey into a mesmerizing world where magic and adventure await at every turn. RDCG offers a unique blend of thrilling quests, challenging puzzles, and intense combat. Will you rise to the occasion and become the hero this realm needs?</p>
+            <p style="font-family: 'Comic Sans MS', cursive; font-size: 1.5rem; color: #919100;">Prepare yourself for a journey into a mesmerizing world where magic and adventure await at every turn. RDCG offers a unique blend of thrilling quests, challenging puzzles, and intense combat. Will you rise to the occasion and become the hero this realm needs?</p>
         </div>
     </div>
-    <div class="features">
-        <div class="features-column">
-            <ul>
-                <li>Immersive storyline with lore</li>
-                <li>Expansive world to explore</li>
-                <li>Dynamic combat system</li>
-            </ul>
-        </div>
-        <div class="features-column">
-            <ul>
-                <li>Challenging dungeons</li>
-                <li>Gear upgrades </li>
-                <li>Many ways to level up</li>
-            </ul>
-        </div>
-    </div>
+    <a href="BlazorDungeon" class="btn btn-primary pulse" style="color: gray;">BEGIN</a>
     <div class="call-to-action">
-        <p>Keep in mind that there are no character saves in the web version!</p>
-        <p>To start the game you need to click inside the console box and press [ENTER].</p>
-        <p>You can skip the time for text output time by pressking [ENTER]</p>
-        <a href="BlazorDungeon" class="btn btn-primary">BEGIN</a>
+        <p style="font-size: 1.2rem;">Keep in mind that there are no character saves in the web version!</p>
+        <p style="font-size: 1.2rem;">To start the game you need to click inside the console box and press [ENTER].</p>
+        <p style="font-size: 1.2rem;">You can skip the time for text output time by pressing [ENTER]</p>
     </div>
 </div>
-
 <style>
     /* Style the page layout as per your requirements */
     body {
@@ -79,30 +63,18 @@
         flex: 0 0 48%;
     }
 
-    /* List styles */
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    li:before {
-        content: "\2022";
-        color: #ffd700; /* Use a gold color for bullet points */
-        display: inline-block;
-        width: 1em;
-        margin-left: -1em;
-    }
-
-    /* Add spacing between list items */
-    li {
-        margin-bottom: 1rem; /* Increase the margin-bottom value for more spacing */
-    }
-
-    /* Call-to-action section styles */
-    .call-to-action {
-        margin-top: 2rem;
+    p {
         text-align: center;
+    }
+
+
+    .call-to-action {
+        text-align: center;
+        padding: 2rem;
+        margin: 2rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
     .btn {
@@ -127,5 +99,9 @@
 
     .btn:hover {
         background-color: #e6be00; /* Darken the button color on hover */
+    }
+
+    .pulse {
+        animation: pulse 1s infinite;
     }
 </style>
