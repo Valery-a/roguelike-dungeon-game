@@ -16,20 +16,20 @@ namespace Valery_s_Dungeon
         {
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Preparing for attack...");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Drawing your sword...");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Swinging your sword!");
             await BlazorConsole.WriteLine("=====[\\\\\\\\\\\\\\>");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Attack executed!");
-            await Task.Delay(500); // Delay for animation effect
+            //  await Task.Delay(500); // Delay for animation effect
         }
 
 
@@ -37,8 +37,8 @@ namespace Valery_s_Dungeon
         {
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Reaching into your backpack...");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Finding a healing potion...");
             await BlazorConsole.WriteLine("   (   )");
@@ -46,8 +46,8 @@ namespace Valery_s_Dungeon
             await BlazorConsole.WriteLine(" (       )");
             await BlazorConsole.WriteLine("  (     )");
             await BlazorConsole.WriteLine("   (   )");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Drinking the healing potion!");
             await BlazorConsole.WriteLine("   (   )");
@@ -55,19 +55,19 @@ namespace Valery_s_Dungeon
             await BlazorConsole.WriteLine(" (   |   )");
             await BlazorConsole.WriteLine("  (  +  )");
             await BlazorConsole.WriteLine("   (   )");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Healing executed!");
-            await Task.Delay(500); // Delay for animation effect
+            //  await Task.Delay(500); // Delay for animation effect
         }
 
         private static async Task AnimateDefending()
         {
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Assuming a defensive stance...");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Raising your shield!");
             await BlazorConsole.WriteLine("   _______");
@@ -77,36 +77,36 @@ namespace Valery_s_Dungeon
             await BlazorConsole.WriteLine("  |   |   |");
             await BlazorConsole.WriteLine("  |   |   |");
             await BlazorConsole.WriteLine("  |___|___|");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Defending executed!");
-            await Task.Delay(500); // Delay for animation effect
+            //  await Task.Delay(500); // Delay for animation effect
         }
 
         private static async Task AnimateRunning()
         {
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Preparing to run...");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Starting to run!");
             await BlazorConsole.WriteLine("   O");
             await BlazorConsole.WriteLine("  /|\\");
             await BlazorConsole.WriteLine("  / \\");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Running away!");
             await BlazorConsole.WriteLine("    O");
             await BlazorConsole.WriteLine("   /|\\");
             await BlazorConsole.WriteLine("  / \\");
-            await Task.Delay(1000); // Delay for animation effect
-
+            //  await Task.Delay(1000); // Delay for animation effect
+            await BlazorConsole.ReadKey();
             await BlazorConsole.Clear();
             await BlazorConsole.WriteLine("Running executed!");
-            await Task.Delay(500); // Delay for animation effect
+            //  await Task.Delay(500); // Delay for animation effect
         }
 
 
