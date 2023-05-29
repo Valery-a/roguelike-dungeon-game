@@ -11,6 +11,106 @@ namespace Valery_s_Dungeon
 
     public class Enemies
     {
+
+        private static async Task AnimateAttack()
+        {
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Preparing for attack...");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Drawing your sword...");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Swinging your sword!");
+            await BlazorConsole.WriteLine("=====[\\\\\\\\\\\\\\>");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Attack executed!");
+            await Task.Delay(500); // Delay for animation effect
+        }
+
+
+        private static async Task AnimateHeal()
+        {
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Reaching into your backpack...");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Finding a healing potion...");
+            await BlazorConsole.WriteLine("   (   )");
+            await BlazorConsole.WriteLine("  (     )");
+            await BlazorConsole.WriteLine(" (       )");
+            await BlazorConsole.WriteLine("  (     )");
+            await BlazorConsole.WriteLine("   (   )");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Drinking the healing potion!");
+            await BlazorConsole.WriteLine("   (   )");
+            await BlazorConsole.WriteLine("  (  +  )");
+            await BlazorConsole.WriteLine(" (   |   )");
+            await BlazorConsole.WriteLine("  (  +  )");
+            await BlazorConsole.WriteLine("   (   )");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Healing executed!");
+            await Task.Delay(500); // Delay for animation effect
+        }
+
+        private static async Task AnimateDefending()
+        {
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Assuming a defensive stance...");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Raising your shield!");
+            await BlazorConsole.WriteLine("   _______");
+            await BlazorConsole.WriteLine("  |   |   |");
+            await BlazorConsole.WriteLine("  |   |   |");
+            await BlazorConsole.WriteLine("  |___|___|");
+            await BlazorConsole.WriteLine("  |   |   |");
+            await BlazorConsole.WriteLine("  |   |   |");
+            await BlazorConsole.WriteLine("  |___|___|");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Defending executed!");
+            await Task.Delay(500); // Delay for animation effect
+        }
+
+        private static async Task AnimateRunning()
+        {
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Preparing to run...");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Starting to run!");
+            await BlazorConsole.WriteLine("   O");
+            await BlazorConsole.WriteLine("  /|\\");
+            await BlazorConsole.WriteLine("  / \\");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Running away!");
+            await BlazorConsole.WriteLine("    O");
+            await BlazorConsole.WriteLine("   /|\\");
+            await BlazorConsole.WriteLine("  / \\");
+            await Task.Delay(1000); // Delay for animation effect
+
+            await BlazorConsole.Clear();
+            await BlazorConsole.WriteLine("Running executed!");
+            await Task.Delay(500); // Delay for animation effect
+        }
+
+
+
         static Random rand = new Random();
 
 
@@ -162,6 +262,8 @@ namespace Valery_s_Dungeon
                     {
                         damage = 0;
                     }
+
+                    await AnimateAttack();
                     //tuk prowerqwa dal ise berserk i ako si berserk ti dobawq medju 0 i 2 damage otgore na twa koeto imash 
                     int attack = rand.Next(0, Dungeon.currentPlayer.weaponV) + rand.Next(1, 4) +
                         ((Dungeon.currentPlayer.currentClass == Player.PlayerClass.Berserk) ? 2 : 0);
@@ -191,6 +293,8 @@ namespace Valery_s_Dungeon
                     }
                     else
                     {
+                        await AnimateHeal();
+
                         await BlazorConsole.WriteLine("You reach out in your backpack and to " +
                             "your surprise you find a red bottle with the mark HEAL written on it. You drink it.");
                         //suzdawam if ako klasa na playera e healer da m uwidgne heala
@@ -220,6 +324,7 @@ namespace Valery_s_Dungeon
                     //a ako proweri iwidi che e archer direktno kam wtoroto
                     if (Dungeon.currentPlayer.currentClass != Player.PlayerClass.Acrobat && rand.Next(0, 2) == 0)
                     {
+                        await AnimateRunning();
                         await BlazorConsole.WriteLine("As you try to run away from the " + n + ", he throws a big mac at you that manages " +
                             "to hit you in the back and sends you into the wall.");
                         int damage = p - Dungeon.currentPlayer.armorV;
@@ -255,7 +360,7 @@ namespace Valery_s_Dungeon
                         damage = 0;
                     }
                     int attack = rand.Next(0, Dungeon.currentPlayer.weaponV) / 2;
-
+                    await AnimateDefending();
                     await TalkLines.RandomDefendFatSlayerText();
 
                     await BlazorConsole.WriteLine("You loose " + damage + " health and deal " + attack + " damage");
@@ -292,10 +397,5 @@ namespace Valery_s_Dungeon
 
 
         }
-
-
-
-
     }
 }
-
