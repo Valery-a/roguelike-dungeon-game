@@ -107,7 +107,7 @@ public static class Maps
         "TTTTTmpmmpmpWWWWbB           WWWWWWW     X   oWWmpmpTT".ToCharArray(),
         "TTTTTTmpmpmppmmWWTTi         WtTpmmWWWO      WWmmpmpmT".ToCharArray(),
         "TTTTTTTmpmmmpmmpWWtTTc      WWtTpmmpmWWoO   mpmmmpTTTT".ToCharArray(),
-        "TTTTTTTTmpmmpmmpmWWWWWW     rTtTpmmpmpmmp77mppmmTTTTTT".ToCharArray(),
+        "TTTTTTTTmpmmpmmpmWWWWWW     rTtTpmmpmpmmpm7mppmmTTTTTT".ToCharArray(),
         "TTTTTTTTTTmmpmpmmpTTTTWG    G   ppTTmpmmpmmpmTTTTTTTTT".ToCharArray(),
         "TTTTTTTTTTmppmTTTTTTTTT             TtTTTTTTTTTTTTTTTT".ToCharArray(),
         "TTTTTTTTTTTTTTTTTTTTTT               TTTTTTTTTTTTTTTTT".ToCharArray(),
